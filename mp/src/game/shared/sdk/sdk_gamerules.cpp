@@ -1255,8 +1255,14 @@ bool CSDKGameRules::InitTeamSpawns()
 		pCheckSpot = gEntList.FindEntityByClassname( pCheckSpot, "info_player_deathmatch" );
 	}
 
-	// choose a random spawn from our set of spawns farthest from the initial point
-	pRefSpot = arrFarthestSet[random->RandomInt(0,(iSetSize-1))];
+	int iPointsFound = arrFarthestSet.Count();
+
+	// no more spawns available
+	if (iPointsFound < 1)
+		pRefSpot = pFirstSpot;
+	else
+		// choose a random spawn from our set of spawns farthest from the initial point
+		pRefSpot = arrFarthestSet[random->RandomInt(0,(iPointsFound-1))];
 
 	// use whichever team we didn't use last time
 	iLastTeam = (iLastTeam == SDK_TEAM_BLUE ? SDK_TEAM_RED : SDK_TEAM_BLUE);
