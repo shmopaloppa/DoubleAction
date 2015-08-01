@@ -45,6 +45,7 @@ void CBriefcase::Spawn( void )
 	m_flLastTouched = -1;
 
 	SetModel("models/briefcase/briefcase_01.mdl");
+	OnNewModel();
 	VPhysicsDestroyObject();
 
 	AddEffects( EF_BONEMERGE_FASTCULL );
